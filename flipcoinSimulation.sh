@@ -1,11 +1,24 @@
 #!/bin/bash -x
 
-coinFlip=$((RANDOM%2))
+Heads=0
+Tails=0
+read -p "Enter simulation num : " n
+simulation=0
 
-if [ $coinFlip -eq 1 ]
-then
-	echo Heads
-elif [ $coinFlip -eq 0 ]
-then
-	echo Tails
-fi
+while [ $simulation != $n ]
+do
+	coinFlip=$((RANDOM%2))
+	case $coinFlip in
+	1)
+		Heads=$(($Heads + 1))
+	;;
+	0)
+		Tails=$(($Tails + 1))
+	;;
+	esac
+	((simulation++))
+done
+
+echo Heads won : $Heads times
+echo Tails won : $Tails times
+
