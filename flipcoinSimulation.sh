@@ -2,10 +2,8 @@
 
 Heads=0
 Tails=0
-read -p "Enter simulation num : " n
-simulation=0
 
-while [ $simulation != $n ]
+while [[ ($Heads != 21) && ($Tails != 21) ]]
 do
 	coinFlip=$((RANDOM%2))
 	case $coinFlip in
@@ -16,9 +14,17 @@ do
 		Tails=$(($Tails + 1))
 	;;
 	esac
-	((simulation++))
 done
 
-echo Heads won : $Heads times
-echo Tails won : $Tails times
-
+if [ $Heads -eq $Tails ]
+then
+	echo both are tie
+elif [ $Heads -gt $Tails ]
+then
+	diff=$(($Heads - $Tails))
+	echo Heads won by $diff times
+elif [ $Tails -gt $Heads ]
+then
+	diff=$(($Tails -$Heads))
+	echo Tails won by $diff times
+fi
